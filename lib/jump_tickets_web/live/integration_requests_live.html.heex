@@ -1,0 +1,142 @@
+<div class="min-h-screen w-screen bg-black px-14 py-8 text-gray-200">
+  <!-- Header -->
+
+  <header class="mb-8">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-white">Integration Request Dashboard</h1>
+    </div>
+    
+<!-- Stats summary -->
+
+    <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-4">
+      <div class="rounded-lg bg-gray-800 p-4">
+        <div class="flex items-center">
+          <div class="mr-4 rounded-full bg-green-900 p-3 px-4">
+            <i class="fas fa-check text-green-400"></i>
+          </div>
+
+          <div>
+            <p class="text-sm text-gray-400">Completed</p>
+
+            <p class="text-xl font-semibold">{@completed_count}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg bg-gray-800 p-4">
+        <div class="flex items-center">
+          <div class="mr-4 rounded-full bg-blue-900 p-3 px-4">
+            <i class="fas fa-sync text-blue-400"></i>
+          </div>
+
+          <div>
+            <p class="text-sm text-gray-400">In Progress</p>
+
+            <p class="text-xl font-semibold">{@running_count}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg bg-gray-800 p-4">
+        <div class="flex items-center">
+          <div class="mr-4 rounded-full bg-red-900 p-3 px-[19px]">
+            <i class="fas fa-times text-red-400"></i>
+          </div>
+
+          <div>
+            <p class="text-sm text-gray-400">Failed</p>
+
+            <p class="text-xl font-semibold">{@failed_count}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg bg-gray-800 p-4">
+        <div class="flex items-center">
+          <div class="mr-4 rounded-full bg-yellow-900 p-3 px-4">
+            <i class="fas fa-clock text-yellow-400"></i>
+          </div>
+
+          <div>
+            <p class="text-sm text-gray-400">Queued</p>
+
+            <p class="text-xl font-semibold">{@pending_count}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+<!-- Main Content -->
+
+  <main>
+    <div class="grid grid-cols-1 gap-6">
+      <!-- Completed Integration Card -->
+
+      <.integration_request
+        :for={integration_request <- @integration_requests}
+        integration_request={integration_request}
+      />
+    </div>
+
+    <div class="flex min-h-[60vh] flex-col items-center justify-center bg-black px-4">
+      
+<!-- Text content -->
+
+      <div :if={@integration_requests == []} class="max-w-2xl text-center">
+        <h2 class="mb-3 text-2xl font-bold text-white">No integration requests yet</h2>
+
+        <p class="mb-6 text-gray-400">
+          To create your first integration request, go to your Intercom inbox and use the "Create Notion Ticket" action on any message.
+        </p>
+
+        <div class="rounded-lg bg-gray-800 p-6 text-left">
+          <h3 class="mb-4 text-lg font-semibold text-white">
+            How to create an integration request:
+          </h3>
+
+          <ol class="space-y-4">
+            <li class="flex items-start">
+              <div class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-indigo-900 text-indigo-400">
+                1
+              </div>
+
+              <div class="ml-3">
+                <p class="text-gray-300">Open your Intercom inbox and select a conversation</p>
+              </div>
+            </li>
+
+            <li class="flex items-start">
+              <div class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-indigo-900 text-indigo-400">
+                2
+              </div>
+
+              <div class="ml-3">
+                <p class="text-gray-300">
+                  Click the three dots menu <i class="fas fa-ellipsis-h mx-1 text-gray-500"></i>
+                  on any message
+                </p>
+              </div>
+            </li>
+
+            <li class="flex items-start">
+              <div class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-indigo-900 text-indigo-400">
+                3
+              </div>
+
+              <div class="ml-3">
+                <p class="text-gray-300">
+                  Select <span class="text-indigo-400">"Create Notion Ticket"</span> from the menu
+                </p>
+
+                <p class="mt-1 text-sm text-gray-500">
+                  This will create a new integration request that you can track here
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

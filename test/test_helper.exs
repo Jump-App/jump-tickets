@@ -1,0 +1,6 @@
+ExUnit.start()
+Ecto.Adapters.SQL.Sandbox.mode(JumpTickets.Repo, :manual)
+Mox.defmock(MockIntercom, for: JumpTickets.External.IntercomBehaviour)
+Mox.defmock(MockNotion, for: JumpTickets.External.NotionBehaviour)
+Mox.defmock(MockSlack, for: JumpTickets.External.SlackBehaviour)
+Mox.defmock(MockLLM, for: JumpTickets.External.LLMBehaviour)
